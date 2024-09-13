@@ -1,0 +1,69 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center; /* İçeriği dikey olarak da ortalamak için eklendi */
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 400px;
+    width: 100%;
+}
+
+h1 {
+    margin-top: 0;
+    color: #333;
+}
+
+form {
+    margin-bottom: 20px;
+}
+
+input[type="text"] {
+    padding: 10px;
+    margin-bottom: 10px;
+    width: calc(100% - 22px); /* Uzunluğu hesaplama için noktalı virgül eklendi */
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007BFF;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.weather {
+    margin-top: 20px;
+    text-align: left;
+}
+
+.weather h2, .weather h3 {
+    margin: 0 0 10px;
+}
+
+.weather p {
+    margin: 10px 0; /* 'Spx' yerine 10px olarak düzeltildi */
+}
+
+.weather ul {
+    padding: 0;
+    list-style: none;
+}
+
+.weather li {
+    margin: 5px 0; /* 'Spx0' yerine 5px 0 olarak düzeltildi */
+}

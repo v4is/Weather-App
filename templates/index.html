@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script>
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition, showError);
+            } else {
+                alert("Geolocation is not supported by this browser.");
+            }
+        }
+
+        function showPosition(position) {
+            document.getElementById("lat").value = position.coords.latitude;
+            document.getElementById("lon").value = position.coords.longitude;
+            document.getElementById("location-form").submit();       
+        }
+
+        function showError(error) { 
+            switch (error.code) {
+                case error.PERMISSION_DENIED:
+                    alert("User denied the request for Geolocation.");
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    alert("Location information is unavailable.");
+                    break;
+                case error.TIMEOUT:
+                    alert("The request to get user location timed out.");
+                    break;
+                case error.UNKNOWN_ERROR:
+                    alert("An unknown error occurred.");
+                    break;
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Weather App</h1>
+        <form id="location-form" method="post">
+            <input type="hidden" name="lat" id="lat">
+            <input type="hidden" name="lon" id="lon"> 
+            <button type="button" onclick="getLocation()">Get Weather Current Location</button>
+        </form>
+        <form method="post">
+            <input type="text" name="location" placeholder="Enter Location">
+            <button type="submit">Get Weather</button>
+        </form>
+        {% if weather_data %}
+        <div class="weather">
+            <h2>Weather for {{location}}</h2>
+            <p>Current Temperature: {{weather_data['current']['temp']}} °C</p>
+            <h3>Weekly Forecast</h3>
+            <ul>
+                {% for day in weather_data['daily'] %}
+                <li>{{loop.index}} : {{day['temp']['day']}} °C</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
